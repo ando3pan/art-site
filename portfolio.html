@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #f8f6f1;
+            --charcoal: #2a2a2a;
+            --sage: #9ca88a;
+            --terracotta: #c97d60;
+            --warm-white: #fdfcfa;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            font-family: 'Jost', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(248, 246, 241, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(42, 42, 42, 0.1);
+            animation: slideDown 0.6s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 4rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: var(--charcoal);
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: 400;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--terracotta);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--terracotta);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--warm-white) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('files/hero-backdrop.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            z-index: 1;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: var(--charcoal);
+            letter-spacing: 3px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--sage);
+            letter-spacing: 1px;
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--terracotta);
+            color: white;
+            text-decoration: none;
+            border-radius: 2px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--terracotta);
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: var(--terracotta);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px var(--shadow);
+        }
+
+        .hero-decoration {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(156, 168, 138, 0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-decoration:nth-child(1) {
+            top: -100px;
+            right: -100px;
+        }
+
+        .hero-decoration:nth-child(2) {
+            bottom: -150px;
+            left: -150px;
+            animation-delay: 3s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* Gallery Grid */
+        .gallery-section {
+            padding: 6rem 4rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 4rem;
+            letter-spacing: 2px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            background: white;
+            border-radius: 2px;
+            box-shadow: 0 5px 15px var(--shadow);
+            transition: all 0.4s ease;
+            animation: fadeIn 0.8s ease;
+            animation-fill-mode: both;
+        }
+
+        .gallery-item:nth-child(1) { animation-delay: 0.1s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.2s; }
+        .gallery-item:nth-child(3) { animation-delay: 0.3s; }
+        .gallery-item:nth-child(4) { animation-delay: 0.4s; }
+        .gallery-item:nth-child(5) { animation-delay: 0.5s; }
+        .gallery-item:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(42, 42, 42, 0.9), transparent);
+            padding: 2rem;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-overlay p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        /* Commission Section */
+        .commission-section {
+            background: linear-gradient(135deg, var(--sage) 0%, #a8b599 100%);
+            padding: 6rem 4rem;
+            text-align: center;
+            color: white;
+        }
+
+        .commission-section .section-title {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .commission-section p {
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .commission-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .commission-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem;
+            border-radius: 2px;
+            color: var(--charcoal);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease;
+            animation-fill-mode: both;
+        }
+
+        .commission-card:nth-child(1) { animation-delay: 0.2s; }
+        .commission-card:nth-child(2) { animation-delay: 0.4s; }
+        .commission-card:nth-child(3) { animation-delay: 0.6s; }
+
+        .commission-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .commission-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--terracotta);
+        }
+
+        .commission-card .price {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: var(--charcoal);
+        }
+
+        .commission-card ul {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .commission-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(42, 42, 42, 0.1);
+        }
+
+        .commission-card li:before {
+            content: "✓ ";
+            color: var(--sage);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* Pricing Grid Table */
+        .pricing-grid-container {
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            overflow-x: auto;
+        }
+
+        .pricing-table {
+            width: 100%;
+            background: white;
+            border-radius: 2px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-collapse: collapse;
+        }
+
+        .pricing-table th {
+            background: var(--terracotta);
+            color: white;
+            padding: 1.5rem 1rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            text-align: center;
+        }
+
+        .pricing-table th:first-child {
+            background: var(--charcoal);
+        }
+
+        .pricing-table td {
+            padding: 1.5rem 1rem;
+            text-align: center;
+            font-size: 1.2rem;
+            border-bottom: 1px solid rgba(42, 42, 42, 0.1);
+            color: var(--charcoal);
+        }
+
+        .pricing-table .row-header {
+            background: var(--charcoal);
+            color: white;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            text-align: left;
+            padding-left: 2rem;
+        }
+
+        .pricing-table tbody tr:hover td:not(.row-header) {
+            background: rgba(156, 168, 138, 0.1);
+            cursor: pointer;
+        }
+
+        /* Special Products */
+        .special-products {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem;
+            border-radius: 2px;
+            color: var(--charcoal);
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--terracotta);
+        }
+
+        .product-price {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: var(--sage);
+        }
+
+        .product-card p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            color: var(--charcoal);
+        }
+
+        .product-features {
+            list-style: none;
+            text-align: left;
+        }
+
+        .product-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(42, 42, 42, 0.1);
+            color: var(--charcoal);
+        }
+
+        .product-features li:before {
+            content: "✓ ";
+            color: var(--sage);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* About Section with Image */
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 2px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--shadow);
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-text {
+            text-align: left;
+        }
+
+        .about-text p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Shop Preview Section */
+        .shop-preview {
+            padding: 6rem 4rem;
+            max-width: 1600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .shop-preview .section-title {
+            margin-bottom: 2rem;
+        }
+
+        .coming-soon {
+            background: white;
+            padding: 4rem;
+            border-radius: 2px;
+            box-shadow: 0 10px 30px var(--shadow);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .coming-soon h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--terracotta);
+            margin-bottom: 1.5rem;
+        }
+
+        .coming-soon p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: var(--charcoal);
+        }
+
+        .notify-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .notify-form input {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid var(--sage);
+            border-radius: 2px;
+            font-family: 'Jost', sans-serif;
+            font-size: 1rem;
+        }
+
+        .notify-form button {
+            padding: 1rem 2rem;
+            background: var(--terracotta);
+            color: white;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            font-family: 'Jost', sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .notify-form button:hover {
+            background: var(--charcoal);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: white;
+            padding: 4rem 4rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--terracotta);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            border-color: var(--terracotta);
+            background: var(--terracotta);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 2rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .gallery-section,
+            .commission-section,
+            .shop-preview {
+                padding: 3rem 2rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-table th,
+            .pricing-table td {
+                padding: 1rem 0.5rem;
+                font-size: 1rem;
+            }
+
+            .pricing-table .row-header {
+                padding-left: 1rem;
+            }
+
+            .product-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-image {
+                max-width: 250px;
+                margin: 0 auto;
+            }
+
+            .about-text {
+                text-align: center;
+            }
+
+            .notify-form {
+                flex-direction: column;
+            }
+
+            footer {
+                padding: 3rem 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo"><img src="files/logo.png" alt=""></div>
+            <ul class="nav-links">
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#commissions">Commissions</a></li>
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-decoration"></div>
+        <div class="hero-decoration"></div>
+        <div class="hero-content">
+            <h1>Hey, I'm [Your Name]!</h1>
+            <p>I draw characters and stuff • Open for commissions!</p>
+            <a href="#commissions" class="cta-button">Check Out Commissions</a>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery-section">
+        <h2 class="section-title">My Art</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="files/image-1.png" alt="Fanart">
+                <div class="gallery-overlay">
+                    <h3>Fanart</h3>
+                    <p>Your fanart example here</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="files/image-2.png" alt="Original Character">
+                <div class="gallery-overlay">
+                    <h3>Original Character</h3>
+                    <p>Your OC example here</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="files/image-3.png" alt="Chibi art">
+                <div class="gallery-overlay">
+                    <h3>Chibi</h3>
+                    <p>Your chibi example here</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="files/image-4.png" alt="Discord emoji">
+                <div class="gallery-overlay">
+                    <h3>Discord Emojis</h3>
+                    <p>Your emoji examples here</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="files/image-5.png" alt="Bust commission">
+                <div class="gallery-overlay">
+                    <h3>Busts</h3>
+                    <p>Your bust example here</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="files/image-6.png" alt="Full body commission">
+                <div class="gallery-overlay">
+                    <h3>Full Body</h3>
+                    <p>Your full body example here</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="commissions" class="commission-section">
+        <h2 class="section-title">Commissions</h2>
+        <p>Want something custom? Here's what I offer! Prices might vary a bit depending on complexity, but this gives you an idea.</p>
+        
+        <div class="pricing-grid-container">
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Lineart</th>
+                        <th>Flat Color</th>
+                        <th>Full Render</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="row-header">Bust</td>
+                        <td>$15</td>
+                        <td>$25</td>
+                        <td>$35</td>
+                    </tr>
+                    <tr>
+                        <td class="row-header">Half Body</td>
+                        <td>$25</td>
+                        <td>$35</td>
+                        <td>$45</td>
+                    </tr>
+                    <tr>
+                        <td class="row-header">Full Body</td>
+                        <td>$35</td>
+                        <td>$45</td>
+                        <td>$60</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="special-products">
+            <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; margin: 3rem 0 2rem; color: white;">Discord Stuff</h3>
+            <div class="product-cards">
+                <div class="product-card">
+                    <h4>Discord Emojis</h4>
+                    <div class="product-price">$15 each</div>
+                    <p>Need custom emojis for your server? I can make those! Static or animated, whatever you need.</p>
+                    <ul class="product-features">
+                        <li>128x128px optimized</li>
+                        <li>Static or animated</li>
+                        <li>2-3 day turnaround</li>
+                        <li>Discord-ready format</li>
+                    </ul>
+                </div>
+                <div class="product-card">
+                    <h4>Discord Stickers</h4>
+                    <div class="product-price">$25 each</div>
+                    <p>Stickers with your characters or OCs! Great for chatting and adding some flair to your messages.</p>
+                    <ul class="product-features">
+                        <li>320x320px format</li>
+                        <li>Full color illustration</li>
+                        <li>3-5 day turnaround</li>
+                        <li>APNG or PNG format</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 3rem;">
+            <a href="#contact" class="cta-button" style="background: white; color: var(--sage); border-color: white;">Let's Work Together!</a>
+        </div>
+    </section>
+
+    <section id="shop" class="shop-preview">
+        <h2 class="section-title">Shop</h2>
+        <div class="coming-soon">
+            <h3>Prints & Stickers Coming Soon!</h3>
+            <p>I'm working on setting up a shop where you can grab prints and stickers of my art. Want to know when it's ready?</p>
+            <form class="notify-form" onsubmit="event.preventDefault(); alert('Thanks for your interest! We\'ll notify you soon.');">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Notify Me</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="about" class="gallery-section" style="background: var(--warm-white);">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-image">
+                <img src="files/image-7.png" alt="Your mascot or logo">
+            </div>
+            <div class="about-text">
+                <p>
+                    Hey there! I'm a hobbyist artist who loves drawing characters. I do this for fun, but I'm always happy to take on commissions when I have the time!
+                </p>
+                <p>
+                    I mainly work digitally and can do anything from simple lineart to fully colored pieces. Whether you need Discord emojis, character art, or something else entirely, feel free to reach out and we can chat about it!
+                </p>
+                <p>
+                    When I'm not drawing, I'm probably gaming or scrolling through art on social media looking for inspiration. Thanks for stopping by! 🎨
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About</h4>
+                <p>Just an artist making cool stuff and taking commissions when life allows it!</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="#gallery">Gallery</a>
+                <a href="#commissions">Commissions</a>
+                <a href="#shop">Shop</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="58303d3434371821372d2a3639353d763b3735">[email&#160;protected]</a></p>
+                <p>+1 (555) 123-4567</p>
+                <div class="social-links">
+                    <a href="#" title="Instagram">IG</a>
+                    <a href="#" title="Twitter">TW</a>
+                    <a href="#" title="Pinterest">PI</a>
+                </div>
+            </div>
+        </div>
+        <div class="foo
