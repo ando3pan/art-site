@@ -135,7 +135,7 @@
             background-image: url('files/hero-backdrop.png');
             background-size: cover;
             background-position: center;
-            opacity: 0.35;
+            opacity: 0.25;
             z-index: 1;
         }
 
@@ -547,6 +547,82 @@
             margin-bottom: 1.5rem;
         }
 
+        /* Contact Form */
+        .contact-form-section {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 2px;
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            color: var(--charcoal);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 1rem;
+            border: 2px solid rgba(138, 157, 184, 0.3);
+            border-radius: 2px;
+            font-family: 'Jost', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--sage);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .submit-button {
+            padding: 1rem 2rem;
+            background: var(--terracotta);
+            color: white;
+            border: none;
+            border-radius: 2px;
+            font-family: 'Jost', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .submit-button:hover {
+            background: var(--charcoal);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px var(--shadow);
+        }
+
         /* Shop Preview Section */
         .shop-preview {
             padding: 6rem 4rem;
@@ -735,6 +811,14 @@
                 text-align: center;
             }
 
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form-section {
+                padding: 2rem;
+            }
+
             .notify-form {
                 flex-direction: column;
             }
@@ -903,7 +987,8 @@
         </div>
 
         <div style="margin-top: 3rem;">
-            <a href="#contact" class="cta-button" style="background: white; color: var(--sage); border-color: white;">Let's Work Together!</a>
+            <p style="font-size: 1.1rem; margin-bottom: 1.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">Want to commission me? Fill out the contact form below or DM me on social media with your idea and preferred style!</p>
+            <a href="#contact" class="cta-button" style="background: white; color: var(--sage); border-color: white;">Get In Touch!</a>
         </div>
     </section>
 
@@ -919,7 +1004,51 @@
         </div>
     </section>
 
-    <footer id="contact">
+    <section id="contact" class="gallery-section">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-form-section">
+            <p style="text-align: center; margin-bottom: 2rem; color: var(--charcoal);">
+                Interested in a commission? Fill out the form below and I'll get back to you as soon as I can! You can also reach me on social media.
+            </p>
+            <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="commission-type">Commission Type *</label>
+                    <select id="commission-type" name="commission-type" required>
+                        <option value="">Select a commission type...</option>
+                        <option value="bust-lineart">Bust - Lineart ($15)</option>
+                        <option value="bust-flat">Bust - Flat Color ($25)</option>
+                        <option value="bust-render">Bust - Full Render ($35)</option>
+                        <option value="half-lineart">Half Body - Lineart ($25)</option>
+                        <option value="half-flat">Half Body - Flat Color ($35)</option>
+                        <option value="half-render">Half Body - Full Render ($45)</option>
+                        <option value="full-lineart">Full Body - Lineart ($35)</option>
+                        <option value="full-flat">Full Body - Flat Color ($45)</option>
+                        <option value="full-render">Full Body - Full Render ($60)</option>
+                        <option value="discord-emoji">Discord Emoji ($15)</option>
+                        <option value="discord-sticker">Discord Sticker ($25)</option>
+                        <option value="other">Other / Not Sure</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Tell me about your idea! *</label>
+                    <textarea id="message" name="message" placeholder="Describe what you'd like me to draw, including character details, pose ideas, references, etc." required></textarea>
+                </div>
+                <button type="submit" class="submit-button">Send Commission Request</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
         <div class="footer-content">
             <div class="footer-section">
                 <h4>About</h4>
@@ -927,14 +1056,14 @@
             </div>
             <div class="footer-section">
                 <h4>Quick Links</h4>
+                <a href="#about">About</a>
                 <a href="#gallery">Gallery</a>
                 <a href="#commissions">Commissions</a>
                 <a href="#shop">Shop</a>
             </div>
             <div class="footer-section">
-                <h4>Contact</h4>
-                <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="58303d3434371821372d2a3639353d763b3735">[email&#160;protected]</a></p>
-                <p>+1 (555) 123-4567</p>
+                <h4>Follow Me</h4>
+                <p>Connect with me on social media!</p>
                 <div class="social-links">
                     <a href="#" title="Instagram">IG</a>
                     <a href="#" title="Twitter">TW</a>
