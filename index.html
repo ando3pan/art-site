@@ -554,6 +554,77 @@
             margin-right: 0.5rem;
         }
 
+        /* Discord Bundle Section */
+        .discord-bundle {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 2px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .discord-banner {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            background: var(--cream);
+        }
+
+        .discord-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .discord-pricing {
+            padding: 3rem;
+            color: var(--charcoal);
+        }
+
+        .discord-pricing h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--terracotta);
+            text-align: center;
+        }
+
+        .bundle-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .bundle-option {
+            background: var(--cream);
+            padding: 2rem 1rem;
+            border-radius: 2px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .bundle-option:hover {
+            border-color: var(--sage);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px var(--shadow);
+        }
+
+        .bundle-count {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: var(--charcoal);
+        }
+
+        .bundle-price {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--terracotta);
+        }
+
         /* About Section with Image */
         .about-content {
             max-width: 1000px;
@@ -842,6 +913,14 @@
                 grid-template-columns: 1fr;
             }
 
+            .bundle-options {
+                grid-template-columns: 1fr;
+            }
+
+            .discord-pricing {
+                padding: 2rem;
+            }
+
             .about-content {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -1058,28 +1137,32 @@
         </div>
 
         <div class="special-products">
-            <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; margin: 3rem 0 2rem; color: white;">Discord Stuff</h3>
-            <div class="product-cards">
-                <div class="product-card">
-                    <h4>Discord Emojis</h4>
-                    <div class="product-price">$30 each</div>
-                    <p>Need custom emojis for your server? I can make those!</p>
-                    <ul class="product-features">
-                        <li>128x128px optimized</li>
-                        <li>Static emojis</li>
-                        <li>2-3 day turnaround</li>
-                        <li>Discord-ready format</li>
-                    </ul>
+            <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; margin: 3rem 0 2rem; color: white;">Discord Emojis & Stickers</h3>
+            <div class="discord-bundle">
+                <div class="discord-banner">
+                    <img src="files/discord-banner.png" alt="Discord Emojis and Stickers Examples">
                 </div>
-                <div class="product-card">
-                    <h4>Discord Stickers</h4>
-                    <div class="product-price">$40 each</div>
-                    <p>Stickers with your characters or OCs! Great for chatting and adding some flair to your messages.</p>
-                    <ul class="product-features">
-                        <li>320x320px format</li>
-                        <li>Full color illustration</li>
-                        <li>3-5 day turnaround</li>
-                        <li>APNG or PNG format</li>
+                <div class="discord-pricing">
+                    <h4>Bulk Packages</h4>
+                    <div class="bundle-options">
+                        <div class="bundle-option">
+                            <div class="bundle-count">3 Emojis/Stickers</div>
+                            <div class="bundle-price">$45</div>
+                        </div>
+                        <div class="bundle-option">
+                            <div class="bundle-count">5 Emojis/Stickers</div>
+                            <div class="bundle-price">$60</div>
+                        </div>
+                        <div class="bundle-option">
+                            <div class="bundle-count">8 Emojis/Stickers</div>
+                            <div class="bundle-price">$100</div>
+                        </div>
+                    </div>
+                    <ul class="product-features" style="margin-top: 2rem;">
+                        <li>128x128px (emojis) or 320x320px (stickers)</li>
+                        <li>Static or animated options</li>
+                        <li>Discord-ready formats</li>
+                        <li>3-5 day turnaround per bundle</li>
                     </ul>
                 </div>
             </div>
@@ -1133,8 +1216,9 @@
                         <option value="full-lineart">Full Body - Lineart ($40)</option>
                         <option value="full-flat">Full Body - Flat Color ($55)</option>
                         <option value="full-render">Full Body - Full Render ($70)</option>
-                        <option value="discord-emoji">Discord Emoji ($30)</option>
-                        <option value="discord-sticker">Discord Sticker ($40)</option>
+                        <option value="discord-3pack">Discord Bundle - 3 Emojis/Stickers ($45)</option>
+                        <option value="discord-5pack">Discord Bundle - 5 Emojis/Stickers ($60)</option>
+                        <option value="discord-8pack">Discord Bundle - 8 Emojis/Stickers ($100)</option>
                         <option value="other">Other / Not Sure</option>
                     </select>
                 </div>
